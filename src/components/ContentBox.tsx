@@ -25,9 +25,18 @@ export default function ContentBox() {
   };
 
   return (
-    <div className="ContentContainer">
-      <ProductContent data={productClassName} type={'TitleBox'} />
-      <ProductContent data={data} type={'ProductBox'} />
+    <div className="content-wrapper">
+      <div className="ContentContainer">
+        <ProductContent data={productClassName} type={'TitleBox'} />
+        <ProductContent data={data} type={'ProductBox'} />
+        <ProductContent data={data} type={'ProductBox'} />
+        <ProductContent data={data} type={'ProductBox'} />
+        <ProductContent data={data} type={'ProductBox'} />
+        <ProductContent data={data} type={'ProductBox'} />
+        <ProductContent data={data} type={'ProductBox'} />
+        <ProductContent data={data} type={'ProductBox'} />
+        <ProductContent data={data} type={'ProductBox'} />
+      </div>
       <div>{'페이지네이션 버튼 위치'}</div>
     </div>
   );
