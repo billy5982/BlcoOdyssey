@@ -3,7 +3,7 @@
   min-height: 22rem;
   flex-direction: column;
   background-color: white;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
   border-radius: 0.5rem;
   overflow: hidden;
