@@ -1,0 +1,8 @@
+.limit-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.limit-wrapper > h5 {
+  display: inline-block;
+}

@@ -3,15 +3,14 @@ import { SearchList } from '../../types/searchBox';
 import './SelectBox.css';
 import SelectModal from './selectModal/SelectModal';
 
-export default function SelectBox() {
-  const listObj: SearchList = {
-    all: '전체',
-    productName: '상품명',
-    brand: '브랜드',
-    productContent: '상품 내용',
-  };
-
-  const [selectContent, setSelectContent] = useState<string>('all');
+export default function SelectBox({
+  listObj,
+  init,
+}: {
+  listObj: SearchList;
+  init: string;
+}) {
+  const [selectContent, setSelectContent] = useState<string>(init);
   const [selectOpen, setSelectOpen] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
