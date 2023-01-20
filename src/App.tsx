@@ -13,7 +13,7 @@ function App() {
     // api();
   }, []);
   return (
-    <div>
+    <div className="App">
       <Routes>
         <Route path="/" element={<Main />} />
       </Routes>

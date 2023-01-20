@@ -1,0 +1,23 @@
+.modalContainer {
+  /* width: 4rem; */
+  position: absolute;
+  margin-top: 0.2rem;
+  border: 1px solid #f3f3f3;
+  border-radius: 0.5rem;
+  background-color: white;
+}
+.option {
+  width: 5rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem 0 0.5rem;
+  cursor: pointer;
+  position: relative;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.option:hover {
+  background-color: #f3f3f3;
+}
