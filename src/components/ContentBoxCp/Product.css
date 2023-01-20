@@ -1,0 +1,46 @@
+.TitleBox {
+  display: none;
+  width: 100%;
+}
+.ProductBox {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  min-height: 2.5rem;
+  font-size: 0.8rem;
+}
+.title {
+  width: 20%;
+  text-align: center;
+  /* background-color: black; */
+  padding: 0 0.25rem 0 0.25rem;
+}
+
+.description {
+  width: 30%;
+  text-align: center;
+  /* background-color: black; */
+  padding: 0 0.25rem 0 0.25rem;
+}
+
+.price,
+.rating,
+.stock,
+.brand,
+.id {
+  width: 10%;
+  text-align: center;
+  /* background-color: black; */
+  padding: 0 0.25rem 0 0.25rem;
+}
+
+/* 큰화면일 때 */
+@media (min-width: 767px) {
+  .TitleBox {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    height: 3rem;
+  }
+}
