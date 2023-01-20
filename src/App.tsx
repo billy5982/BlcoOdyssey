@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Main from './pages/Main';
 
 function App() {
   useEffect(() => {
@@ -10,7 +12,13 @@ function App() {
     // };
     // api();
   }, []);
-  return <div className="App">asdf</div>;
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
