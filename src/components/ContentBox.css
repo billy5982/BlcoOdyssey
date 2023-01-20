@@ -1,0 +1,17 @@
+.ContentContainer {
+  display: flex;
+  min-height: 22rem;
+  flex-direction: column;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+/* 큰화면일 때 */
+@media (min-width: 767px) {
+  .SearchBox {
+    /* width: 100%; */
+    padding: 0 2rem 0 2rem;
+  }
+}
