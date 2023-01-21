@@ -7,19 +7,31 @@ import { SearchList } from '../types/searchBox';
 import { RootState } from '../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchContent, setSearchKind } from '../store/reducer/searchInfo';
+import { useNavigate } from 'react-router-dom';
 
 export default function SearchBox() {
+  const navigate = useNavigate();
+
   const listObj: SearchList = {
     all: '전체',
     productName: '상품명',
     brand: '브랜드',
     productContent: '상품 내용',
   };
-  const { searchKind: selectContent, searchContent } = useSelector(
-    (state: RootState) => state.searchInfo
-  );
+
+  const {
+    searchKind: selectContent,
+    searchContent,
+    curPage,
+  } = useSelector((state: RootState) => state.searchInfo);
   const setValue = (el: string) => {
     dispatch(setSearchContent({ searchContent: el }));
+  };
+
+  const clickFunc = () => {
+    navigate(
+      `/?category=${selectContent}&searchContent=${searchContent}&pageNum=${curPage}`
+    );
   };
 
   const dispatch = useDispatch();
@@ -33,7 +45,7 @@ export default function SearchBox() {
         }}
       />
       <SearchInput value={searchContent} setValue={setValue} />
-      <SearchBtn />
+      <SearchBtn clickFunc={clickFunc} />
     </div>
   );
 }
