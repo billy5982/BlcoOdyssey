@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #eee;
-  min-height: 2.5rem;
+  min-height: 5rem;
   font-size: 0.8rem;
 }
 .title {
@@ -45,5 +45,9 @@
     align-items: center;
     border-bottom: 1px solid #eee;
     height: 3rem;
+  }
+  .ProductBox {
+    min-height: 4rem;
+    font-size: 1rem;
   }
 }

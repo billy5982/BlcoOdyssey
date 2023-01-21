@@ -14,8 +14,9 @@ export default function ContentBox() {
     <div className="content-wrapper">
       <div className="ContentContainer">
         <ProductContent data={productClassName} type={'TitleBox'} />
-        {dataLoading
-          ? filterContent
+        {dataLoading ? (
+          filterContent.length > 0 ? (
+            filterContent
               .slice(
                 (curPage - 1) * Number(pageRow),
                 (curPage - 1) * Number(pageRow) + Number(pageRow)
@@ -27,7 +28,12 @@ export default function ContentBox() {
                   type={'ProductBox'}
                 />
               ))
-          : null}
+          ) : (
+            <div className="dataNone">검색결과가 존재하지 않습니다.</div>
+          )
+        ) : (
+          <div>skelton</div>
+        )}
       </div>
       <div>{'페이지네이션 버튼 위치'}</div>
     </div>
