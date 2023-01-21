@@ -5,4 +5,5 @@ button {
   height: 2rem;
   width: 3rem;
   border-radius: 0.25rem;
+  cursor: pointer;
 }
