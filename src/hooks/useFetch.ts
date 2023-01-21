@@ -19,7 +19,7 @@ export default function useFetch(url: string) {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<ProductType[]>([]);
+  // const [data, setData] = useState<ProductType[]>([]);
 
   useEffect(() => {
     const dataSet = async (url2: string) => {
