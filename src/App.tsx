@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import useFetch from './hooks/useFetch';
 import Main from './pages/Main';
-
+import { RootState } from './store/store';
 function App() {
-  useEffect(() => {
-    // const api = async () => {
-    //   const data = await fetch('/products?limit=100');
-    //   const { products } = await data.json();
-    //   console.log(products);
-    // };
-    // api();
-  }, []);
+  const test = useSelector((state: RootState) => state.searchInfo);
+  const [dataLoading] = useFetch('/products?limit=100');
+
   return (
     <div className="App">
       <Routes>

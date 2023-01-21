@@ -5,3 +5,8 @@ export interface SearchList {
   // brand: string;
   // productContent: string;
 }
+
+export interface InputProps {
+  value: string;
+  setValue: (el: string) => void;
+}

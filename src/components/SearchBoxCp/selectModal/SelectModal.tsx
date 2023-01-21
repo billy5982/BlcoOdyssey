@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react';
 import { SearchList } from '../../../types/searchBox';
 import './SelectModal.css';
+
 type Props = {
   listObj: SearchList;
   modalSideClick: (e: any) => void;
   selectOpen: boolean;
-  setSelectContent: React.Dispatch<React.SetStateAction<string>>;
+  settingFunc: (el: string) => void;
 };
 
 export default function SelectModal({
   listObj,
   modalSideClick,
   selectOpen,
-  setSelectContent,
+  settingFunc,
 }: Props) {
   useEffect(() => {
     if (selectOpen) document.addEventListener('mousedown', modalSideClick);
@@ -23,14 +24,14 @@ export default function SelectModal({
 
   return (
     <div className="modalContainer">
-      {Object.entries(listObj).map((el) => (
+      {Object.entries(listObj).map((category) => (
         <div
-          key={el[0]}
+          key={category[0]}
           className="option"
-          id={el[0]}
-          onClick={() => setSelectContent(el[0])}
+          id={category[0]}
+          onClick={() => settingFunc(category[0])}
         >
-          {el[1]}
+          {category[1]}
         </div>
       ))}
     </div>
