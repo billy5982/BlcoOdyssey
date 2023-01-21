@@ -8,8 +8,9 @@ import {
 import { SearchBar } from '../../types/reduxState';
 
 export const searchInfo = createSlice({
-  name: 'user',
+  name: 'searchInfo',
   initialState: {
+    dataLoading: false,
     searchKind: 'all', // 검색하고자 하는 종류
     searchContent: '', // 검색하고자 하는 내용
     pageRow: '10', // 컨텐츠를 보고 싶은 갯수
@@ -25,7 +26,11 @@ export const searchInfo = createSlice({
       return { ...state, pageRow: action.payload.pageRow };
     },
     setContent(state, action: PayloadAction<ContentArr>) {
-      return { ...state, content: action.payload.content };
+      return {
+        ...state,
+        dataLoading: action.payload.dataLoading,
+        content: action.payload.content,
+      };
     },
     setCurPage(state, action: PayloadAction<currentPage>) {
       return { ...state, curPage: action.payload.curPage };
@@ -34,5 +39,6 @@ export const searchInfo = createSlice({
 });
 
 // 액션과 리듀서를 export 해준다. 이건 그냥 따라하면 된다.
-export const { setSearchKind } = searchInfo.actions;
+export const { setSearchKind, setPageRow, setContent, setCurPage } =
+  searchInfo.actions;
 export default searchInfo.reducer;
