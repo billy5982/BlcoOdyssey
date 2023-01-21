@@ -22,6 +22,11 @@ export interface PageRow {
 export interface currentPage {
   curPage: number;
 }
+
+export interface SearchInit extends SearchInput {
+  searchKind: string;
+}
+
 export interface FilterContent {
   filterContent: ProductType[];
 }

@@ -9,4 +9,5 @@ export interface SearchList {
 export interface InputProps {
   value: string;
   setValue: (el: string) => void;
+  clickFunc: () => void;
 }

@@ -4,6 +4,7 @@ import ProductContent from './ContentBoxCp/ProductBox';
 import { productClassName } from '../libs/contentBox';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
+import PagenationContainer from './PagenationContainer';
 
 export default function ContentBox() {
   const { filterContent, dataLoading, curPage, pageRow } = useSelector(
@@ -35,7 +36,12 @@ export default function ContentBox() {
           <div>skelton</div>
         )}
       </div>
-      <div>{'페이지네이션 버튼 위치'}</div>
+
+      {dataLoading && (
+        <div>
+          <PagenationContainer />
+        </div>
+      )}
     </div>
   );
 }

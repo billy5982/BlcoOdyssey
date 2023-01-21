@@ -5,6 +5,7 @@ import {
   PageRow,
   currentPage,
   Page,
+  SearchInit,
 } from '../../types/reduxState';
 import { SearchBox, SearchInput, FilterContent } from '../../types/reduxState';
 
@@ -37,6 +38,13 @@ export const searchInfo = createSlice({
         content: action.payload.content,
       };
     },
+    setSearchInput(state, action: PayloadAction<SearchInit>) {
+      return {
+        ...state,
+        searchKind: action.payload.searchKind,
+        searchContent: action.payload.searchContent,
+      };
+    },
     setCurPage(state, action: PayloadAction<currentPage>) {
       return { ...state, curPage: action.payload.curPage };
     },
@@ -62,5 +70,6 @@ export const {
   setCurPage,
   setFilteringContent,
   setPages,
+  setSearchInput,
 } = searchInfo.actions;
 export default searchInfo.reducer;

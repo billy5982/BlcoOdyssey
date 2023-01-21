@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './SearchBox.css';
 import SearchBtn from './SearchBoxCp/SearchBtn';
 import SearchInput from './SearchBoxCp/SearchInput';
@@ -12,7 +12,7 @@ import { paramsObj } from '../libs/paramsObj';
 
 export default function SearchBox() {
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const btnRef = useRef<HTMLButtonElement>(null);
   const listObj: SearchList = {
     all: '전체',
     productName: '상품명',
@@ -26,12 +26,13 @@ export default function SearchBox() {
     curPage,
     pageRow,
   } = useSelector((state: RootState) => state.searchInfo);
+
   const setValue = (el: string) => {
     dispatch(setSearchContent({ searchContent: el }));
   };
 
   const clickFunc = () => {
-    setSearchParams(paramsObj(selectContent, searchContent, curPage, pageRow));
+    setSearchParams(paramsObj(selectContent, searchContent, 1, pageRow));
   };
 
   const dispatch = useDispatch();
@@ -44,7 +45,11 @@ export default function SearchBox() {
           dispatch(setSearchKind({ searchKind: category }));
         }}
       />
-      <SearchInput value={searchContent} setValue={setValue} />
+      <SearchInput
+        value={searchContent}
+        setValue={setValue}
+        clickFunc={clickFunc}
+      />
       <SearchBtn clickFunc={clickFunc} />
     </div>
   );
