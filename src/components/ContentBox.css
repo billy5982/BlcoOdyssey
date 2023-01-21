@@ -1,0 +1,33 @@
+.content-wrapper {
+  display: flex;
+  min-height: 28rem;
+  flex-direction: column;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.ContentContainer {
+  width: 100%;
+  overflow: auto;
+  height: 25rem;
+}
+
+.dataNone {
+  display: block;
+  text-align: center;
+  margin-top: 8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+@media (min-width: 768px) {
+  .content-wrapper {
+    min-height: 22rem;
+  }
+  .ContentContainer {
+    width: 100%;
+    height: 19rem;
+  }
+}
