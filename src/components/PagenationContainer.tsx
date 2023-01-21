@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { paramsObj } from '../libs/paramsObj';
-import { setCurPage } from '../store/reducer/searchInfo';
 import { RootState } from '../store/store';
 import './PagenationContainer.css';
 export default function PagenationContainer() {
   const { searchContent, searchKind, filterContent, pageRow, curPage } =
     useSelector((state: RootState) => state.searchInfo);
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const dispatch = useDispatch();
 
   const [currPage, setCurrPage] = useState(curPage);
   const firstNum = currPage - (currPage % 5);
@@ -63,7 +60,6 @@ export default function PagenationContainer() {
                 }
                 key={i + 1}
                 onClick={() => {
-                  console.log(i + firstNum + 2);
                   setSearchParams(
                     paramsObj(
                       searchKind,
