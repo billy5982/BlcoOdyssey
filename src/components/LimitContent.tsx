@@ -15,15 +15,15 @@ export default function LimitContent() {
   };
 
   const [searchParams, setSearchParams] = useSearchParams();
-
+  const { filterContent } = useSelector((state: RootState) => state.searchInfo);
   const {
     searchKind,
     searchContent,
-    curPage,
     pageRow: selectContent,
   } = useSelector((state: RootState) => state.searchInfo);
 
   const recordCnt = (row: string) => {
+    const curPage = 1;
     setSearchParams(paramsObj(searchKind, searchContent, curPage, row));
   };
 
@@ -31,7 +31,7 @@ export default function LimitContent() {
 
   return (
     <div className="limit-wrapper">
-      <h5>검색된 데이터 : {'fetching Data'}</h5>
+      <h5>검색된 데이터 : {filterContent.length} 개</h5>
       <SelectBox
         listObj={listObj}
         init={selectContent}
