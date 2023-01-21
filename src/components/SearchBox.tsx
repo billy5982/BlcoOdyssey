@@ -5,9 +5,8 @@ import SearchInput from './SearchBoxCp/SearchInput';
 import SelectBox from './SearchBoxCp/SelectBox';
 import { SearchList } from '../types/searchBox';
 import { RootState } from '../store/store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSearchKind } from '../store/reducer/searchInfo';
-import { AnyAction } from '@reduxjs/toolkit';
 
 export default function SearchBox() {
   const listObj: SearchList = {
@@ -19,14 +18,15 @@ export default function SearchBox() {
   const selectContent = useSelector(
     (state: RootState) => state.searchInfo.searchKind
   );
+  const dispatch = useDispatch();
   return (
     <div className="SearchBox">
       <SelectBox
         listObj={listObj}
         init={selectContent}
-        settingFunc={(el: string): AnyAction =>
-          setSearchKind({ searchKind: el })
-        }
+        settingFunc={(category: string) => {
+          dispatch(setSearchKind({ searchKind: category }));
+        }}
       />
       <SearchInput />
       <SearchBtn />

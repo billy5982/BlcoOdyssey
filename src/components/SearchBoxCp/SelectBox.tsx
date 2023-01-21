@@ -1,6 +1,4 @@
-import { AnyAction } from '@reduxjs/toolkit';
 import React, { useRef, useState } from 'react';
-import { RootState } from '../../store/store';
 import { SearchList } from '../../types/searchBox';
 import './SelectBox.css';
 import SelectModal from './selectModal/SelectModal';
@@ -12,7 +10,7 @@ export default function SelectBox({
 }: {
   listObj: SearchList;
   init: string;
-  settingFunc: (el: string) => AnyAction;
+  settingFunc: (el: string) => void;
 }) {
   const [selectOpen, setSelectOpen] = useState<boolean>(false);
   const modalRef = useRef<HTMLDivElement>(null);

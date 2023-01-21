@@ -42,6 +42,11 @@ export const searchInfo = createSlice({
 });
 
 // 액션과 리듀서를 export 해준다. 이건 그냥 따라하면 된다.
-export const { setSearchKind, setPageRow, setContent, setCurPage } =
-  searchInfo.actions;
+export const {
+  setSearchKind,
+  setSearchContent,
+  setPageRow,
+  setContent,
+  setCurPage,
+} = searchInfo.actions;
 export default searchInfo.reducer;
