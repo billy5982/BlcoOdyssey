@@ -7,10 +7,11 @@ import { SearchList } from '../types/searchBox';
 import { RootState } from '../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchContent, setSearchKind } from '../store/reducer/searchInfo';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { paramsObj } from '../libs/paramsObj';
 
 export default function SearchBox() {
-  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const listObj: SearchList = {
     all: '전체',
@@ -23,15 +24,14 @@ export default function SearchBox() {
     searchKind: selectContent,
     searchContent,
     curPage,
+    pageRow,
   } = useSelector((state: RootState) => state.searchInfo);
   const setValue = (el: string) => {
     dispatch(setSearchContent({ searchContent: el }));
   };
 
   const clickFunc = () => {
-    navigate(
-      `/?category=${selectContent}&searchContent=${searchContent}&pageNum=${curPage}`
-    );
+    setSearchParams(paramsObj(selectContent, searchContent, curPage, pageRow));
   };
 
   const dispatch = useDispatch();

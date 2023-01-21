@@ -2,40 +2,38 @@ import React from 'react';
 import './ContentBox.css';
 import ProductContent from './ContentBoxCp/ProductBox';
 import { productClassName } from '../libs/contentBox';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 export default function ContentBox() {
-  const data = {
-    id: 1,
-    title: 'iPhone 9',
-    description: 'An apple mobile which is nothing like apple',
-    price: 549,
-    discountPercentage: 12.96,
-    rating: 4.69,
-    stock: 94,
-    brand: 'Apple',
-    category: 'smartphones',
-    thumbnail: 'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
-    images: [
-      'https://i.dummyjson.com/data/products/1/1.jpg',
-      'https://i.dummyjson.com/data/products/1/2.jpg',
-      'https://i.dummyjson.com/data/products/1/3.jpg',
-      'https://i.dummyjson.com/data/products/1/4.jpg',
-      'https://i.dummyjson.com/data/products/1/thumbnail.jpg',
-    ],
-  };
+  const { filterContent, dataLoading, curPage, pageRow } = useSelector(
+    (state: RootState) => state.searchInfo
+  );
 
   return (
     <div className="content-wrapper">
       <div className="ContentContainer">
         <ProductContent data={productClassName} type={'TitleBox'} />
-        <ProductContent data={data} type={'ProductBox'} />
-        <ProductContent data={data} type={'ProductBox'} />
-        <ProductContent data={data} type={'ProductBox'} />
-        <ProductContent data={data} type={'ProductBox'} />
-        <ProductContent data={data} type={'ProductBox'} />
-        <ProductContent data={data} type={'ProductBox'} />
-        <ProductContent data={data} type={'ProductBox'} />
-        <ProductContent data={data} type={'ProductBox'} />
+        {dataLoading ? (
+          filterContent.length > 0 ? (
+            filterContent
+              .slice(
+                (curPage - 1) * Number(pageRow),
+                (curPage - 1) * Number(pageRow) + Number(pageRow)
+              )
+              .map((product) => (
+                <ProductContent
+                  key={product.id}
+                  data={product}
+                  type={'ProductBox'}
+                />
+              ))
+          ) : (
+            <div className="dataNone">검색결과가 존재하지 않습니다.</div>
+          )
+        ) : (
+          <div>skelton</div>
+        )}
       </div>
       <div>{'페이지네이션 버튼 위치'}</div>
     </div>

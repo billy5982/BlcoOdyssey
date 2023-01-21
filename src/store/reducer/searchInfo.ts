@@ -4,8 +4,9 @@ import {
   ContentArr,
   PageRow,
   currentPage,
+  Page,
 } from '../../types/reduxState';
-import { SearchBox, SearchInput } from '../../types/reduxState';
+import { SearchBox, SearchInput, FilterContent } from '../../types/reduxState';
 
 export const searchInfo = createSlice({
   name: 'searchInfo',
@@ -15,6 +16,7 @@ export const searchInfo = createSlice({
     searchContent: '', // 검색하고자 하는 내용
     pageRow: '10', // 컨텐츠를 보고 싶은 갯수
     content: [], // 불러온 컨텐츠
+    filterContent: [],
     curPage: 1, // 현재 페이지
   } as SearchSetting, // 필수로 타입 지정 안해도 되지만, 확실히 하기로 한다.
   // dispatch 함수
@@ -38,6 +40,16 @@ export const searchInfo = createSlice({
     setCurPage(state, action: PayloadAction<currentPage>) {
       return { ...state, curPage: action.payload.curPage };
     },
+    setPages(state, action: PayloadAction<Page>) {
+      return {
+        ...state,
+        curPage: action.payload.curPage,
+        pageRow: action.payload.pageRow,
+      };
+    },
+    setFilteringContent(state, action: PayloadAction<FilterContent>) {
+      return { ...state, filterContent: action.payload.filterContent };
+    },
   },
 });
 
@@ -48,5 +60,7 @@ export const {
   setPageRow,
   setContent,
   setCurPage,
+  setFilteringContent,
+  setPages,
 } = searchInfo.actions;
 export default searchInfo.reducer;
