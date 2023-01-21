@@ -1,7 +1,9 @@
 import { Titles as ProductType } from './contentBox';
 
-export interface SearchBar {
+export interface SearchBox {
   searchKind: string; // 검색하고자 하는 종류
+}
+export interface SearchInput {
   searchContent: string | null; // 검색하고자 하는 내용
 }
 export interface ContentArr {
@@ -17,7 +19,9 @@ export interface currentPage {
 
 export interface SearchSetting extends SearchBar {
   dataLoading: boolean;
+  searchKind: string; // 검색하고자 하는 종류
+  searchContent: string | null;
   pageRow: string; // 컨텐츠를 보고 싶은 갯수
-  curPage: number; // 현재 페이지
   content: [] | Titles[]; // 불러온 컨텐츠
+  curPage: number; // 현재 페이지
 }

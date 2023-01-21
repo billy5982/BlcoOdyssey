@@ -4,6 +4,11 @@ import SearchBtn from './SearchBoxCp/SearchBtn';
 import SearchInput from './SearchBoxCp/SearchInput';
 import SelectBox from './SearchBoxCp/SelectBox';
 import { SearchList } from '../types/searchBox';
+import { RootState } from '../store/store';
+import { useSelector } from 'react-redux';
+import { setSearchKind } from '../store/reducer/searchInfo';
+import { AnyAction } from '@reduxjs/toolkit';
+
 export default function SearchBox() {
   const listObj: SearchList = {
     all: '전체',
@@ -11,9 +16,18 @@ export default function SearchBox() {
     brand: '브랜드',
     productContent: '상품 내용',
   };
+  const selectContent = useSelector(
+    (state: RootState) => state.searchInfo.searchKind
+  );
   return (
     <div className="SearchBox">
-      <SelectBox listObj={listObj} init={'all'} />
+      <SelectBox
+        listObj={listObj}
+        init={selectContent}
+        settingFunc={(el: string): AnyAction =>
+          setSearchKind({ searchKind: el })
+        }
+      />
       <SearchInput />
       <SearchBtn />
     </div>
