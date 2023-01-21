@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { paramsObj } from '../libs/paramsObj';
 import { setCurPage } from '../store/reducer/searchInfo';
 import { RootState } from '../store/store';
-
+import './PagenationContainer.css';
 export default function PagenationContainer() {
   const { searchContent, searchKind, filterContent, pageRow, curPage } =
     useSelector((state: RootState) => state.searchInfo);
@@ -33,6 +33,7 @@ export default function PagenationContainer() {
     <div>
       <div>
         <button
+          className="pgBtn"
           onClick={() => {
             setSearchParams(
               paramsObj(searchKind, searchContent, curPage - 1, pageRow)
@@ -43,6 +44,7 @@ export default function PagenationContainer() {
           &lt;
         </button>
         <button
+          className={firstNum + 1 === curPage ? 'pgBtn active' : 'pgBtn'}
           onClick={() => {
             setSearchParams(
               paramsObj(searchKind, searchContent, firstNum + 1, pageRow)
@@ -56,8 +58,12 @@ export default function PagenationContainer() {
           .map((_, i) => {
             return (
               <button
+                className={
+                  i + firstNum + 2 === curPage ? 'pgBtn active' : 'pgBtn'
+                }
                 key={i + 1}
                 onClick={() => {
+                  console.log(i + firstNum + 2);
                   setSearchParams(
                     paramsObj(
                       searchKind,
@@ -73,6 +79,7 @@ export default function PagenationContainer() {
             );
           })}
         <button
+          className="pgBtn"
           onClick={() => {
             setSearchParams(
               paramsObj(searchKind, searchContent, curPage + 1, pageRow)

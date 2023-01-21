@@ -1,0 +1,13 @@
+.pgBtn {
+  background-color: white;
+  color: #999999;
+  border-radius: 0;
+  margin-bottom: 0.2rem;
+}
+.pgBtn:hover {
+  background-color: #3f3f3f;
+  border-radius: 0.2rem;
+}
+.active {
+  border-bottom: 2px solid #999999;
+}
