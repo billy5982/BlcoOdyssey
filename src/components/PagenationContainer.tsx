@@ -1,22 +1,20 @@
-import e from 'express';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
+import { paramsObj } from '../libs/paramsObj';
 import { setCurPage } from '../store/reducer/searchInfo';
 import { RootState } from '../store/store';
 
 export default function PagenationContainer() {
-  const { filterContent, pageRow, curPage } = useSelector(
-    (state: RootState) => state.searchInfo
-  );
+  const { searchContent, searchKind, filterContent, pageRow, curPage } =
+    useSelector((state: RootState) => state.searchInfo);
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const dispatch = useDispatch();
 
-  const pageChaning = (pageNum: number) => {
-    dispatch(setCurPage({ curPage: pageNum }));
-  };
-
   const [currPage, setCurrPage] = useState(curPage);
-  const firstNum = currPage - (currPage % 5) + 1;
-  const lastNum = currPage - (currPage % 5) + 5;
+  const firstNum = currPage - (currPage % 5);
+
   const [pageList, setPageList] = useState(4);
   const numPages = Math.ceil(filterContent.length / Number(pageRow));
 
@@ -28,56 +26,59 @@ export default function PagenationContainer() {
     } else if (numPages - 1 <= 0) {
       setPageList(0);
     }
-  }, [filterContent]);
+    setCurrPage(curPage - 1);
+  }, [filterContent, searchParams]);
 
   return (
     <div>
       <div>
         <button
           onClick={() => {
-            pageChaning(curPage - 1);
-            setCurrPage(curPage - 2);
+            setSearchParams(
+              paramsObj(searchKind, searchContent, curPage - 1, pageRow)
+            );
           }}
-          disabled={curPage === 1}
+          disabled={curPage <= 1}
         >
           &lt;
         </button>
-        <button onClick={() => pageChaning(firstNum)}>{firstNum}</button>
+        <button
+          onClick={() => {
+            setSearchParams(
+              paramsObj(searchKind, searchContent, firstNum + 1, pageRow)
+            );
+          }}
+        >
+          {firstNum + 1}
+        </button>
         {Array(pageList)
           .fill(false)
           .map((_, i) => {
-            if (i <= 2) {
-              return (
-                <button
-                  // border="true"
-                  key={i + 1}
-                  onClick={() => {
-                    pageChaning(firstNum + 1 + i);
-                  }}
-                  // aria-current={page === firstNum + 1 + i ? 'page' : null}
-                >
-                  {firstNum + 1 + i}
-                </button>
-              );
-            } else if (i >= 3) {
-              return (
-                <button
-                  // border="true"
-                  key={i + 1}
-                  onClick={() => pageChaning(lastNum)}
-                  // aria-current={page === lastNum ? 'page' : null}
-                >
-                  {lastNum}
-                </button>
-              );
-            }
+            return (
+              <button
+                key={i + 1}
+                onClick={() => {
+                  setSearchParams(
+                    paramsObj(
+                      searchKind,
+                      searchContent,
+                      firstNum + i + 2,
+                      pageRow
+                    )
+                  );
+                }}
+              >
+                {firstNum + i + 2}
+              </button>
+            );
           })}
         <button
           onClick={() => {
-            pageChaning(curPage + 1);
-            setCurrPage(curPage);
+            setSearchParams(
+              paramsObj(searchKind, searchContent, curPage + 1, pageRow)
+            );
           }}
-          disabled={curPage === numPages}
+          disabled={curPage >= numPages || pageList <= 0}
         >
           &gt;
         </button>
