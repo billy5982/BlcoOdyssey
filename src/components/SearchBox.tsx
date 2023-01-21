@@ -6,7 +6,7 @@ import SelectBox from './SearchBoxCp/SelectBox';
 import { SearchList } from '../types/searchBox';
 import { RootState } from '../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchKind } from '../store/reducer/searchInfo';
+import { setSearchContent, setSearchKind } from '../store/reducer/searchInfo';
 
 export default function SearchBox() {
   const listObj: SearchList = {
@@ -15,9 +15,13 @@ export default function SearchBox() {
     brand: '브랜드',
     productContent: '상품 내용',
   };
-  const selectContent = useSelector(
-    (state: RootState) => state.searchInfo.searchKind
+  const { searchKind: selectContent, searchContent } = useSelector(
+    (state: RootState) => state.searchInfo
   );
+  const setValue = (el: string) => {
+    dispatch(setSearchContent({ searchContent: el }));
+  };
+
   const dispatch = useDispatch();
   return (
     <div className="SearchBox">
@@ -28,7 +32,7 @@ export default function SearchBox() {
           dispatch(setSearchKind({ searchKind: category }));
         }}
       />
-      <SearchInput />
+      <SearchInput value={searchContent} setValue={setValue} />
       <SearchBtn />
     </div>
   );

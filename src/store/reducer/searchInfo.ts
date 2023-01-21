@@ -12,7 +12,7 @@ export const searchInfo = createSlice({
   initialState: {
     dataLoading: false,
     searchKind: 'all', // 검색하고자 하는 종류
-    searchContent: null, // 검색하고자 하는 내용
+    searchContent: '', // 검색하고자 하는 내용
     pageRow: '10', // 컨텐츠를 보고 싶은 갯수
     content: [], // 불러온 컨텐츠
     curPage: 1, // 현재 페이지
