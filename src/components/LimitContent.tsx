@@ -3,9 +3,9 @@ import './LimitContent.css';
 import SelectBox from './SearchBoxCp/SelectBox';
 export default function LimitContent() {
   const listObj = {
-    '10': 10,
-    '20': 20,
-    '50': 50,
+    10: 10,
+    20: 20,
+    50: 50,
   };
   return (
     <div className="limit-wrapper">
