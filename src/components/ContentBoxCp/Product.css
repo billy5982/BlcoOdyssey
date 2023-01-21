@@ -15,6 +15,7 @@
   text-align: center;
   /* background-color: black; */
   padding: 0 0.25rem 0 0.25rem;
+  word-break: break-all;
 }
 
 .description {
@@ -22,6 +23,7 @@
   text-align: center;
   /* background-color: black; */
   padding: 0 0.25rem 0 0.25rem;
+  word-break: break-all;
 }
 
 .price,
@@ -33,6 +35,7 @@
   text-align: center;
   /* background-color: black; */
   padding: 0 0.25rem 0 0.25rem;
+  word-break: break-all;
 }
 
 /* 큰화면일 때 */
