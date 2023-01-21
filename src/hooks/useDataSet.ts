@@ -51,10 +51,17 @@ export default function useDataSet() {
         );
         const limited = Math.ceil(data.length / Number(pageKeyword[1]));
 
-        if (limited < +pageKeyword[0]) {
+        if (!isNaN(Number(pageKeyword[0])) && !isNaN(Number(pageKeyword[1]))) {
+          if (limited < +pageKeyword[0]) {
+            setSearchParams(paramsObj(searchKind, searchContent, 1, pageRow));
+          }
+          if (!['10', '20', '50'].includes(pageKeyword[1] as string)) {
+            setSearchParams(
+              paramsObj(searchKind, searchContent, curPage, '10')
+            );
+          }
+        } else {
           setSearchParams(paramsObj(searchKind, searchContent, 1, pageRow));
-        } else if (!['10', '20', '50'].includes(pageKeyword[1] as string)) {
-          setSearchParams(paramsObj(searchKind, searchContent, curPage, '10'));
         }
       } else {
         dispatch(setFilteringContent({ filterContent: [...content] }));
