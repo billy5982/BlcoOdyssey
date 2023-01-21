@@ -6,6 +6,12 @@ export interface SearchBox {
 export interface SearchInput {
   searchContent: string; // 검색하고자 하는 내용
 }
+
+export interface Page {
+  pageRow: string;
+  curPage: number;
+}
+
 export interface ContentArr {
   content: ProductType[];
   dataLoading: boolean;

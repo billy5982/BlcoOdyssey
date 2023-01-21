@@ -3,7 +3,7 @@ import { RootState } from './../store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import { setFilteringContent } from '../store/reducer/searchInfo';
+import { setFilteringContent, setPages } from '../store/reducer/searchInfo';
 import { Titles as Product } from '../types/contentBox';
 
 // 전체인 데 상품명이 없을 경우 -> 그냥 원본 return
@@ -24,8 +24,19 @@ export default function useDataSet() {
           'category',
           'searchContent',
         ]);
+        const pageKeyword = filterKeyword(searchParams, [
+          'pageNum',
+          'pageRow',
+        ]) as (string | number)[];
+
         const data = filterData(content, keywordFilter);
         dispatch(setFilteringContent({ filterContent: [...data] }));
+        dispatch(
+          setPages({
+            curPage: Number(pageKeyword[0]),
+            pageRow: String(pageKeyword[1]),
+          })
+        );
       } else {
         dispatch(setFilteringContent({ filterContent: [...content] }));
       }

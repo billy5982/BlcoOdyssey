@@ -4,6 +4,7 @@ import {
   ContentArr,
   PageRow,
   currentPage,
+  Page,
 } from '../../types/reduxState';
 import { SearchBox, SearchInput, FilterContent } from '../../types/reduxState';
 
@@ -39,6 +40,13 @@ export const searchInfo = createSlice({
     setCurPage(state, action: PayloadAction<currentPage>) {
       return { ...state, curPage: action.payload.curPage };
     },
+    setPages(state, action: PayloadAction<Page>) {
+      return {
+        ...state,
+        curPage: action.payload.curPage,
+        pageRow: action.payload.pageRow,
+      };
+    },
     setFilteringContent(state, action: PayloadAction<FilterContent>) {
       return { ...state, filterContent: action.payload.filterContent };
     },
@@ -53,5 +61,6 @@ export const {
   setContent,
   setCurPage,
   setFilteringContent,
+  setPages,
 } = searchInfo.actions;
 export default searchInfo.reducer;
