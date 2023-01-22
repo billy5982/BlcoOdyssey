@@ -50,7 +50,15 @@ export default function useDataSet() {
           })
         );
         const limited = Math.ceil(data.length / Number(pageKeyword[1]));
-
+        //
+        if (
+          !['productContent', 'brand', 'productName', 'all'].includes(
+            keywordFilter[0] as string
+          )
+        ) {
+          setSearchParams(paramsObj('all', searchContent, 1, pageRow));
+        }
+        // 주소 접근이 잘못됐을 때(RageRow)
         if (!isNaN(Number(pageKeyword[0])) && !isNaN(Number(pageKeyword[1]))) {
           if (limited < +pageKeyword[0] || +pageKeyword[0] <= 0) {
             setSearchParams(paramsObj(searchKind, searchContent, 1, pageRow));
