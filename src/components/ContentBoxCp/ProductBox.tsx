@@ -22,11 +22,22 @@ export default function ProductBox({
 
   return (
     <div className={type}>
-      {Object.entries(filterProductInfo).map((el) => (
-        <div className={el[0]} key={el[0]}>
-          {wordSlicing(el[1])}
-        </div>
-      ))}
+      {Object.entries(filterProductInfo).map((el) => {
+        if (el[0] === 'description') {
+          // 상품내용일 경우 40자 이상이면 줄임표가 필요함.
+          return (
+            <div className={el[0]} key={el[0]}>
+              {wordSlicing(el[1])}
+            </div>
+          );
+        } else {
+          return (
+            <div className={el[0]} key={el[0]}>
+              {el[1]}
+            </div>
+          );
+        }
+      })}
     </div>
   );
 }
