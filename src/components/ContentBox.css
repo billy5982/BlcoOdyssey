@@ -24,10 +24,10 @@
 
 @media (min-width: 768px) {
   .content-wrapper {
-    min-height: 30rem;
+    min-height: 40rem;
   }
   .ContentContainer {
     width: 100%;
-    height: 25rem;
+    height: 33.5rem;
   }
 }
