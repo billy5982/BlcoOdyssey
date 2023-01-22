@@ -8,7 +8,7 @@ import {
   setPages,
   setSearchInput,
 } from '../store/reducer/searchInfo';
-import { Titles as Product } from '../types/contentBox';
+
 import { paramsObj } from '../libs/paramsObj';
 
 // 전체인 데 상품명이 없을 경우 -> 그냥 원본 return
