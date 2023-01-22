@@ -1,5 +1,7 @@
 ## 스마트폰 및 태블릿 쇼핑몰의 관리자 페이지
 
+### [배포 링크](https://block-odyssey.vercel.app/)
+
 <hr>
 
 ### 항목
