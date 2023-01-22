@@ -8,7 +8,6 @@ import Main from './pages/Main';
 
 function App() {
   const [dataLoading] = useFetch('/products?limit=100');
-
   const dataSet = useDataSet();
 
   return (

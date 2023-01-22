@@ -33,7 +33,7 @@ export default function ContentBox() {
             <div className="dataNone">검색결과가 존재하지 않습니다.</div>
           )
         ) : (
-          <div>skelton</div>
+          <div className="dataNone">데이터를 불러오는 중입니다.</div>
         )}
       </div>
 
