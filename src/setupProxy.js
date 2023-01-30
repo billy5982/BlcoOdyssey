@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     ['/products'],
     createProxyMiddleware({
-      target: process.env.REACT_APP_SERVER_URL,
+      target: 'https://dummyjson.com',
       changeOrigin: true,
     })
   );
